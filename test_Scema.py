@@ -10,6 +10,7 @@ def test_sample_email():
     value = sample("email")
     assert type(value) == str
 
+
 def test_sample_integer():
     value = sample("integer")
     assert type(value) == int
@@ -23,8 +24,6 @@ def test_sample_float():
 def test_random_country_code():
     value = sample("country code")
     assert type(value) == str
-
-
 
 
 def test_generate_document():
