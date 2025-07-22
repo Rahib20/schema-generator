@@ -65,7 +65,7 @@ def get_schema():
 @Schema.get("/schemas/samples/")
 def sampledata():
     global user_schemas
-    json_data = []
+
     return_type = request.headers.get('Accept', 'application/json')
 
     schema_name = request.args.get("name")
@@ -78,11 +78,7 @@ def sampledata():
     if count <= 0:
         return {"error": "'count' must be a positive integer."}, 400
 
-    for i in range(count):
-        sample_data = {}
-        for field, field_name in schema.items():
-            sample_data[field] = sample(field_name)
-        json_data.append(sample_data)
+    json_data = display_documents(count, schema)
 
     if return_type == "application/x-ndjson":
         print(json.dumps(json_data, indent=2))
