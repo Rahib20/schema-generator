@@ -14,21 +14,20 @@ user_schemas = {}
 
 @Schema.post("/schema")
 def create_schema():
-    schema_name = request.get_json().get("name")  # added
-    schema_data = request.get_json().get("schema")  # modified
+    schema_name = request.get_json().get("name")
+    schema_data = request.get_json().get("schema")
 
     if not schema_name or not schema_data:
-        return {"error": "Both 'name' and 'schema' fields are required."}, 400  # Improved validation
+        return {"error": "Both 'name' and 'schema' fields are required."}, 400
 
     if schema_name in user_schemas:
-        return {"error": f"Schema with name '{schema_name}' already exists."}, 400  # Prevent overwriting
+        return {"error": f"Schema with name '{schema_name}' already exists."}, 400
 
-    # Store the new schema in the global storage dictionary
-    user_schemas[schema_name] = schema_data  # Save schema under its name
+    user_schemas[schema_name] = schema_data
 
     print(user_schemas)
 
-    return jsonify({"message": f"Schema '{schema_name}' saved successfully!"}), 200  # Success response
+    return jsonify({"message": f"Schema '{schema_name}' saved successfully!"}), 200
 
 
 @Schema.get("/schemas")
@@ -39,28 +38,42 @@ def view_schema():
     return jsonify(schema_names)
 
 
-@Schema.get("/schemas/<string:schema_name>")
-def get_schema(schema_name):
+@Schema.delete("/schema")
+def delete_schema():
+    schema_name = request.args.get("name")
+    if not schema_name:
+        return {"error": f"Schema '{schema_name}' not found."}, 404
+
+    del user_schemas[schema_name]
+
+    return jsonify({"message": "Schema deleted successfully!"})
+
+
+@Schema.get("/schemas/schema")
+def get_schema():
     global user_schemas
 
-    # Check if schema exists
+    schema_name = request.args.get("name")
+
     if schema_name not in user_schemas:
         return {"error": f"Schema '{schema_name}' not found."}, 404
 
-    schema = user_schemas[schema_name]  # Get the schema
+    schema = user_schemas[schema_name]
     return jsonify(schema)
 
 
-@Schema.get("/schemas/<string:schema_name>/samples/<int:count>")
-def sampledata(schema_name, count):
+@Schema.get("/schemas/samples/")
+def sampledata():
     global user_schemas
     json_data = []
+    return_type = request.headers.get('Accept', 'application/json')
 
-    schema = user_schemas[schema_name]
+    schema_name = request.args.get("name")
+    count = request.args.get("count", type=int)
 
-    # Check if the specified schema exists
     if schema_name not in user_schemas:
         return {"error": f"Schema '{schema_name}' not found."}, 404
+    schema = user_schemas[schema_name]
 
     if count <= 0:
         return {"error": "'count' must be a positive integer."}, 400
@@ -71,9 +84,31 @@ def sampledata(schema_name, count):
             sample_data[field] = sample(field_name)
         json_data.append(sample_data)
 
-    print(json.dumps(json_data, indent=2))
+    if return_type == "application/x-ndjson":
+        print(json.dumps(json_data, indent=2))
+        ndjson = "\n".join([json.dumps(item) for item in json_data])
+        return ndjson
 
     return jsonify(json_data)
+
+def display_documents(count,schema):
+
+    records = []
+
+    for i in range(count):
+        generator = generate_document(schema)
+        records.append(generator)
+
+    return records
+
+def generate_document(schema):
+    print(schema)
+    sample_data = {}
+    for field, field_name in schema.items():
+        sample_data[field] = sample(field_name)
+    json_data = json.dumps(sample_data)
+    print(json_data)
+    return sample_data
 
 
 def main():
@@ -84,6 +119,8 @@ def main():
         'D': 'boolean',
         'E': 'date',
         'F': 'ip',
+        'G': 'email',
+        'H': 'country code',
     }
     while True:
         try:
@@ -99,7 +136,7 @@ def main():
         except ValueError:
             print("Please enter a valid number.")
 
-    schema = {}
+
 
     for i in range(property_count):
         print()
@@ -113,14 +150,18 @@ def main():
                 break
             print("Invalid letter. Try again.")
         property_name = input("Enter field name: ").strip()
-        schema[property_name] = variable_option[letter]
+        user_schemas[property_name] = variable_option[letter]
 
-    for i in range(record_count):
-        sample_data = {}
-        for field, field_name in schema.items():
-            sample_data[field] = sample(field_name)
-        json_data = json.dumps(sample_data)
-        print(json_data)
+        display_documents(record_count)
+
+    #for i in range(record_count):
+     #   generator = generate_document(user_schemas)
+      #  print(generator)
+       # sample_data = {}
+        #for field, field_name in schema.items():
+        #    sample_data[field] = sample(field_name)
+      #  json_data = json.dumps(sample_data)
+       # print(json_data)
 
 
 def sample(property_name):
@@ -140,9 +181,18 @@ def sample(property_name):
             return random_date.strftime("%d/%m/%Y")
         case "ip":
             return faker.ipv4()
+        case "email":
+            return faker.email()
+        case "job":
+            return faker.job()
+        case "country code":
+            return faker.country_code()
+        case "number":
+            return faker.phone_number()
+
     return None
 
 
 if __name__ == "__main__":
     Schema.run()
-    # main()
+    #main()
