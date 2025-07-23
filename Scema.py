@@ -148,7 +148,7 @@ def main():
         property_name = input("Enter field name: ").strip()
         user_schemas[property_name] = variable_option[letter]
 
-        display_documents(record_count)
+        display_documents(record_count, user_schemas)
 
     #for i in range(record_count):
      #   generator = generate_document(user_schemas)
