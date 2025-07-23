@@ -87,8 +87,8 @@ def sampledata():
 
     return jsonify(json_data)
 
-def display_documents(count,schema):
 
+def display_documents(count, schema):
     records = []
 
     for i in range(count):
@@ -96,6 +96,7 @@ def display_documents(count,schema):
         records.append(generator)
 
     return records
+
 
 def generate_document(schema):
     print(schema)
@@ -132,8 +133,6 @@ def main():
         except ValueError:
             print("Please enter a valid number.")
 
-
-
     for i in range(property_count):
         print()
         print("Field:" + str(i + 1))
@@ -149,15 +148,6 @@ def main():
         user_schemas[property_name] = variable_option[letter]
 
         display_documents(record_count, user_schemas)
-
-    #for i in range(record_count):
-     #   generator = generate_document(user_schemas)
-      #  print(generator)
-       # sample_data = {}
-        #for field, field_name in schema.items():
-        #    sample_data[field] = sample(field_name)
-      #  json_data = json.dumps(sample_data)
-       # print(json_data)
 
 
 def sample(property_name):
@@ -191,4 +181,4 @@ def sample(property_name):
 
 if __name__ == "__main__":
     Schema.run()
-   # main()
+# main()
