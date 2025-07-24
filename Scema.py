@@ -166,7 +166,7 @@ def sample(property_name):
             random_date = from_date + timedelta(days=random_day)
             return random_date.strftime("%d/%m/%Y")
         case "ip":
-            return faker.first_name()
+            return faker.ipv4()
         case "email":
             return faker.email()
         case "job":
