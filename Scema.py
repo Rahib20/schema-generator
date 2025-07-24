@@ -34,6 +34,7 @@ def create_schema():
 def view_schema():
     global user_schemas
     schema_names = list(user_schemas.keys())
+    print("success")
 
     return jsonify(schema_names)
 
