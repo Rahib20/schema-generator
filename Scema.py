@@ -165,7 +165,7 @@ def sample(property_name):
             random_day = random.randint(0, 365 * 50)
             random_date = from_date + timedelta(days=random_day)
             return random_date.strftime("%d/%m/%Y")
-        case "ip"
+        case "ip":
             return faker.ipv4()
         case "email":
             return faker.email()
