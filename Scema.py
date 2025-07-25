@@ -126,7 +126,7 @@ def main():
             property_count = int(input("How many properties do you require?"))
             break
         except ValueError:
-            print("Please enter a valid number.")
+            print("Please enter a valid number")
 
     while True:
         try:
