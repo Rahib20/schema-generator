@@ -123,7 +123,7 @@ def main():
     }
     while True:
         try:
-            property_count = int(input("How many properties do you require? "))
+            property_count = int(input("How many properties do you require?"))
             break
         except ValueError:
             print("Please enter a valid number.")
