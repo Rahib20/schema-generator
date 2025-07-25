@@ -28,7 +28,7 @@ def create_schema():
     print(user_schemas)
 
     return jsonify({"message": f"Schema '{schema_name}' saved successfully!"}), 200
-    #print("unreachable")
+    print("unreachable")
 
 
 @Schema.get("/schemas")
@@ -133,7 +133,7 @@ def main():
             record_count = int(input("How many records do you want to generate? "))
             break
         except ValueError:
-            print("Please enter a valid number.")
+            print("Please enter a valid number")
 
     for i in range(property_count):
         print()
