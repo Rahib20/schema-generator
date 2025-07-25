@@ -11,7 +11,7 @@ Schema = Flask(__name__)
 
 user_schemas = {}
 
-@Schema.post("/schema")
+@Schema.post("/schema"
 def create_schema():
     schema_name = request.get_json().get("name")
     schema_data = request.get_json().get("schema")
@@ -110,7 +110,7 @@ def generate_document(schema):
 
 def main():
     variable_option = {
-        'A': 'string'
+        'A': 'string',
         'B': 'integer',
         'C': 'float',
         'D': 'boolean',
