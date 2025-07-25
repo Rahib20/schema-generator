@@ -11,9 +11,6 @@ Schema = Flask(__name__)
 
 user_schemas = {}
 
-def test_fail_QG():
-    return
-    print("This will never be executed")
 
 @Schema.post("/schema")
 def create_schema():
@@ -31,6 +28,7 @@ def create_schema():
     print(user_schemas)
 
     return jsonify({"message": f"Schema '{schema_name}' saved successfully!"}), 200
+    #print("unreachable")
 
 
 @Schema.get("/schemas")
@@ -89,8 +87,8 @@ def sampledata():
         ndjson = "\n".join([json.dumps(item) for item in json_data])
         return ndjson
 
-    return jsonify(json_data)
-
+    #return jsonify(json_data)
+    return json.dumps(json_data, indent=4)
 
 def display_documents(count, schema):
     records = []
