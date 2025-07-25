@@ -28,7 +28,7 @@ def create_schema():
     print(user_schemas)
 
     return jsonify({"message": f"Schema '{schema_name}' saved successfully!"}), 200
-    print("unreachable")
+    #print("unreachable")
 
 
 @Schema.get("/schemas")
@@ -68,7 +68,7 @@ def get_schema():
 def sampledata():
     global user_schemas
 
-    return_type = request.headers.get('Accept', 'application/json')
+    return_type = request.headers.get('Accept', '')
 
     schema_name = request.args.get("name")
     count = request.args.get("count", type=int)
@@ -87,7 +87,6 @@ def sampledata():
         ndjson = "\n".join([json.dumps(item) for item in json_data])
         return ndjson
 
-    #return jsonify(json_data)
     return json.dumps(json_data, indent=4)
 
 def display_documents(count, schema):
