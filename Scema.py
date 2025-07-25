@@ -110,7 +110,7 @@ def generate_document(schema):
 
 def main():
     variable_option = {
-        'A': 'string',
+        'A': 'string'
         'B': 'integer',
         'C': 'float',
         'D': 'boolean',
