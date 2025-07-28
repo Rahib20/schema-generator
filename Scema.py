@@ -28,7 +28,7 @@ def create_schema():
     print(user_schemas)
 
     return jsonify({"message": f"Schema '{schema_name}' saved successfully!"}), 200
-    #print("unreachable")
+    print("unreachable")
 
 
 @Schema.get("/schemas")
