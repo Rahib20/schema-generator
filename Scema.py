@@ -28,7 +28,7 @@ def create_schema():
     print(user_schemas)
 
     return jsonify({"message": f"Schema '{schema_name}' saved successfully!"}), 200
-    #print("unreachable")
+    print("unreachable")
 
 
 @Schema.get("/schemas")
@@ -88,6 +88,7 @@ def sampledata():
         return ndjson
 
     return json.dumps(json_data, indent=4)
+
 
 def display_documents(count, schema):
     records = []
@@ -168,14 +169,13 @@ def sample(property_name):
             return random_date.strftime("%d/%m/%Y")
         case "ip":
             return faker.ipv4()
-        case "email":
-            return faker.email()
         case "job":
             return faker.job()
         case "country code":
             return faker.country_code()
         case "number":
             return faker.phone_number()
+
 
     return None
 
