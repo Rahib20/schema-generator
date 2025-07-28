@@ -28,7 +28,7 @@ def create_schema():
     print(user_schemas)
 
     return jsonify({"message": f"Schema '{schema_name}' saved successfully!"}), 200
-    print("unreachable")
+    #print("unreachable")
 
 
 @Schema.get("/schemas")
@@ -157,8 +157,7 @@ def sample(property_name):
         case "string":
             return faker.first_name()
         case "integer":
-            return 50
-            #return random.randint(1, 100)
+            return random.randint(1, 100)
         case "float":
             return round(random.uniform(0, 100), 2)
         case "boolean":
