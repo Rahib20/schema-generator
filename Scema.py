@@ -171,11 +171,10 @@ def sample(property_name):
             return faker.ipv4()
         case "job":
             return faker.job()
-        case "country code":
-            return faker.country_code()
         case "number":
             return faker.phone_number()
-
+        case "email":
+            return faker.email()
 
     return None
 
