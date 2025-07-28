@@ -157,7 +157,8 @@ def sample(property_name):
         case "string":
             return faker.first_name()
         case "integer":
-            return random.randint(1, 100)
+            return 50
+            #return random.randint(1, 100)
         case "float":
             return round(random.uniform(0, 100), 2)
         case "boolean":
