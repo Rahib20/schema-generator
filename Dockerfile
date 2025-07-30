@@ -12,4 +12,4 @@ ENV FLASK_APP=Scema.py
 ENV FLASK_RUN_HOST=0.0.0.0
 EXPOSE 5000
 
-CMD ["flask","run"]
+CMD ["python", "run_waitress.py"]
