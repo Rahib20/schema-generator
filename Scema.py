@@ -9,17 +9,17 @@ from flask import Flask, request, jsonify
 faker = Faker()
 Schema = Flask(__name__)
 
-#user_schemas = {}
-
 data = "data.json"
 
 
+def load_data_file():
+    try:
+        with open(data, "r") as f:
+            user_schemas = json.load(f)
+            return user_schemas
+    except FileNotFoundError:
+        return {"error: data.json file not found"}, 404
 
-try:
-    with open(data, "r") as f:
-        user_schemas = json.load(f)
-except FileNotFoundError:
-    user_schemas = {}
 
 @Schema.post("/schema")
 def create_schema():
@@ -28,6 +28,8 @@ def create_schema():
 
     if not schema_name or not schema_data:
         return {"error": "Both 'name' and 'schema' fields are required."}, 400
+
+    user_schemas = load_data_file()
 
     if schema_name in user_schemas:
         return {"error": f"Schema with name '{schema_name}' already exists."}, 400
@@ -44,12 +46,9 @@ def create_schema():
 
 @Schema.get("/schemas")
 def view_schema():
-    try:
-        with open(data, "r") as f:
-            result = json.load(f)
-            schema_names = list(result.keys())
-    except FileNotFoundError:
-        schema_names = []
+    result = load_data_file()
+
+    schema_names = list(result.keys())
 
     return jsonify(schema_names)
 
@@ -60,11 +59,7 @@ def delete_schema():
     if not schema_name:
         return {"error": f"Schema '{schema_name}' not found."}, 404
 
-    try:
-        with open(data, "r") as f:
-            user_schemas = json.load(f)
-    except FileNotFoundError:
-        return {"error": f"Schema '{schema_name}' not found."}, 404
+    user_schemas = load_data_file()
 
     if schema_name not in user_schemas:
         return {"error": f"Schema '{schema_name}' not found."}, 404
@@ -78,14 +73,9 @@ def delete_schema():
 
 @Schema.get("/schemas/schema")
 def get_schema():
-   # global user_schemas
     schema_name = request.args.get("name")
 
-    try:
-        with open(data, "r") as f:
-            user_schemas = json.load(f)
-    except FileNotFoundError:
-        return {"error": f"Schema '{schema_name}' not found."}, 404
+    user_schemas = load_data_file()
 
     if schema_name not in user_schemas:
         return {"error": f"Schema '{schema_name}' not found."}, 404
@@ -96,18 +86,12 @@ def get_schema():
 
 @Schema.get("/schemas/samples/")
 def sampledata():
-    #global user_schemas
-
     return_type = request.headers.get('Accept', '')
 
     schema_name = request.args.get("name")
     count = request.args.get("count", type=int)
 
-    try:
-        with open(data, "r") as f:
-            user_schemas = json.load(f)
-    except FileNotFoundError:
-        return {"error": f"Schema '{schema_name}' not found."}, 404
+    user_schemas = load_data_file()
 
     if schema_name not in user_schemas:
         return {"error": f"Schema '{schema_name}' not found."}, 404
