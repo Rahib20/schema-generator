@@ -1,4 +1,4 @@
-from Scema import sample, create_schema, user_schemas, generate_document, display_documents
+from Scema import sample, create_schema, generate_document, display_documents
 
 
 def test_sample_string():
