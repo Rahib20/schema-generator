@@ -17,12 +17,12 @@ def load_data():
         with open(data, "r") as f:
             user_schemas = json.load(f)
             return user_schemas
-    except FileNotFoundError: #pragma: no cover
+    except FileNotFoundError:
         return {"error: data.json file not found"}, 404
 
 
 @Schema.post("/schema")
-def create_schema():  #pragma: no cover
+def create_schema():
     schema_name = request.get_json().get("name")
     schema_data = request.get_json().get("schema")
 
@@ -45,7 +45,7 @@ def create_schema():  #pragma: no cover
 
 
 @Schema.get("/schemas")
-def view_schema():  #pragma: no cover
+def view_schema():
     user_schemas = load_data()
 
     schema_names = list(user_schemas.keys())
@@ -54,7 +54,7 @@ def view_schema():  #pragma: no cover
 
 
 @Schema.delete("/schema")
-def delete_schema(): #pragma: no cover
+def delete_schema():
     schema_name = request.args.get("name")
     if not schema_name:
         return {"error": f"Schema '{schema_name}' not found."}, 404
@@ -72,7 +72,7 @@ def delete_schema(): #pragma: no cover
 
 
 @Schema.get("/schemas/schema")
-def get_schema(): #pragma: no cover
+def get_schema():
     schema_name = request.args.get("name")
 
     user_schemas = load_data()
@@ -85,7 +85,7 @@ def get_schema(): #pragma: no cover
 
 
 @Schema.get("/schemas/samples/")
-def sampledata(): #pragma: no cover
+def sampledata():
     return_type = request.headers.get('Accept', '')
 
     schema_name = request.args.get("name")

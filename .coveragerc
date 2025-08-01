@@ -1,0 +1,8 @@
+[report]
+exclude_also =
+    def get_schema
+    def delete_schema
+    def view_schema
+    def create_schema
+    def load_data
+    def sampledata
