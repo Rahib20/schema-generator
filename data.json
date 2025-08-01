@@ -1,1 +1,101 @@
-{}
+{
+  "schema5": {
+    "name": "string",
+    "email": "email",
+    "age": "integer",
+    "ip": "ip"
+  },
+  "schema1": {
+    "name": "string",
+    "email": "email"
+  },
+  "schema2": {
+    "name": "string",
+    "last_name": "string",
+    "email": "email"
+  },
+  "schema3": {
+    "name": "string",
+    "age": {
+      "type": "integer",
+      "min": 18,
+      "max": 120
+    },
+    "last_name": "string",
+    "email": "email"
+  },
+  "schema4": {
+    "name": "string",
+    "age": {
+      "type": "integer",
+      "min": 10,
+      "max": 10
+    },
+    "last_name": "string",
+    "email": "email"
+  },
+  "schema6": {
+    "name": "string",
+    "age": "integer",
+    "last_name": "string",
+    "email": "email"
+  },
+  "test": {
+    "name": "string",
+    "age": {
+      "type": "integer",
+      "min": 18,
+      "max": 120
+    },
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.1
+    },
+    "last_name": "string",
+    "email": "email"
+  },
+  "test1": {
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.1
+    },
+    "email": "email"
+  },
+  "test2": {
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.5
+    },
+    "email": "email"
+  },
+  "abc": {
+    "title": "string",
+    "name": "first_name",
+    "last_name": "string",
+    "age": {
+      "type": "integer",
+      "min": 18,
+      "max": 120
+    },
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.1
+    },
+    "email": "email"
+  },
+  "abc123": {
+    "title": "string",
+    "name": "string",
+    "last_name": "string",
+    "age": {
+      "type": "integer",
+      "min": 18,
+      "max": 120
+    },
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.1
+    },
+    "email": "email"
+  }
+}

@@ -123,8 +123,15 @@ def display_documents(count, schema):
 def generate_document(schema):
     print(schema)
     sample_data = {}
+
     for field, field_name in schema.items():
-        sample_data[field] = sample(field_name)
+        if field_name != "email":
+            sample_data[field] = sample(field_name)
+
+    for field, field_name in schema.items():
+        if field_name == "email":
+            sample_data[field] = realistic_email(sample_data)
+
     json_data = json.dumps(sample_data)
     print(json_data)
     return sample_data
@@ -177,10 +184,16 @@ def sample(property_name):
     match property_name:
         case "string":
             return faker.first_name()
+        case {"type": "integer", "min": minv, "max": maxv}:
+            return random.randint(minv, maxv)
         case "integer":
             return random.randint(1, 100)
+        case {"type": "float", "min": minv, "max": maxv}:
+            return round(random.uniform(minv, maxv), 2)
         case "float":
             return round(random.uniform(0, 100), 2)
+        case {"type": "boolean", "true_probability": probability} if 0 <= probability <= 1:
+            return random.random() < probability
         case "boolean":
             return random.choice([True, False])
         case "date":
@@ -196,10 +209,19 @@ def sample(property_name):
             return faker.country_code()
         case "number":
             return faker.phone_number()
-        case "email":
-            return faker.email()
 
     return None
+
+def realistic_email(sample_data):
+    first = (
+            sample_data.get("first_name")
+            or sample_data.get("name")
+            or faker.first_name()
+    )
+    last = sample_data.get("last_name") or faker.last_name()
+    domain = faker.free_email_domain()
+
+    return f"{first.lower()}_{last.lower()}@{domain}"
 
 
 if __name__ == "__main__":
