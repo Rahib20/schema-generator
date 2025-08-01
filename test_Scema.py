@@ -1,4 +1,4 @@
-from Scema import sample, create_schema, generate_document, display_documents
+from Scema import sample, create_schema, generate_document, display_documents, load_data
 
 
 def test_sample_string():
@@ -9,6 +9,11 @@ def test_sample_string():
 def test_sample_email():
     value = sample("email")
     assert type(value) == str
+
+
+def test_sample_number():
+    value = sample("number")
+    assert type(value) == int
 
 
 def test_sample_integer():
@@ -24,6 +29,36 @@ def test_sample_float():
 def test_random_country_code():
     value = sample("country code")
     assert type(value) == str
+
+
+def test_sample_boolean():
+    value = sample("boolean")
+    assert type(value) == bool
+
+
+def test_sample_date():
+    value = sample("date")
+    assert type(value) == str
+
+
+def test_sample_ip():
+    value = sample("ip")
+    assert type(value) == str
+
+
+def test_sample_job():
+    value = sample("job")
+    assert type(value) == str
+
+
+def test_load_data_returns_dict():
+    result = load_data()
+    assert type(result) == dict
+
+
+def test_load_data_not_none():
+    result = load_data()
+    assert result is not None
 
 
 def test_generate_document():
