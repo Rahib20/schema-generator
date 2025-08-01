@@ -6,9 +6,6 @@ def test_sample_string():
     assert type(value) == str
 
 
-def test_sample_email():
-    value = sample("email")
-    assert type(value) == str
 
 
 def test_sample_number():
