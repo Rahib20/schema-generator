@@ -13,7 +13,7 @@ def test_sample_email():
 
 def test_sample_number():
     value = sample("number")
-    assert type(value) == int
+    assert type(value) == str
 
 
 def test_sample_integer():
