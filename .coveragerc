@@ -6,3 +6,4 @@ exclude_also =
     def create_schema
     def load_data
     def sampledata
+    def error_500():

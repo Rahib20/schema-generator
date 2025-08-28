@@ -55,6 +55,9 @@ def view_schema():
 
     return jsonify(schema_names)
 
+@Schema.get("/500")
+def error_500():
+    return {"error - 500 "}, 500
 
 @Schema.delete("/schema")
 def delete_schema():
