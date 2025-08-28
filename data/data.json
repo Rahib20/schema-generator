@@ -1,0 +1,197 @@
+{
+  "schema5": {
+    "name": "string",
+    "email": "email",
+    "age": "integer",
+    "ip": "ip"
+  },
+  "schema1": {
+    "name": "string",
+    "email": "email"
+  },
+  "schema2": {
+    "name": "string",
+    "last_name": "string",
+    "email": "email"
+  },
+  "schema3": {
+    "name": "string",
+    "age": {
+      "type": "integer",
+      "min": 18,
+      "max": 120
+    },
+    "last_name": "string",
+    "email": "email"
+  },
+  "schema4": {
+    "name": "string",
+    "age": {
+      "type": "integer",
+      "min": 10,
+      "max": 10
+    },
+    "last_name": "string",
+    "email": "email"
+  },
+  "schema6": {
+    "name": "string",
+    "age": "integer",
+    "last_name": "string",
+    "email": "email"
+  },
+  "test": {
+    "name": "string",
+    "age": {
+      "type": "integer",
+      "min": 18,
+      "max": 120
+    },
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.1
+    },
+    "last_name": "string",
+    "email": "email"
+  },
+  "test1": {
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.1
+    },
+    "email": "email"
+  },
+  "test2": {
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.5
+    },
+    "email": "email"
+  },
+  "abc": {
+    "title": "string",
+    "name": "first_name",
+    "last_name": "string",
+    "age": {
+      "type": "integer",
+      "min": 18,
+      "max": 120
+    },
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.1
+    },
+    "email": "email"
+  },
+  "abc123": {
+    "title": "string",
+    "name": "string",
+    "last_name": "string",
+    "age": {
+      "type": "integer",
+      "min": 18,
+      "max": 120
+    },
+    "is_active": {
+      "type": "boolean",
+      "true_probability": 0.1
+    },
+    "email": "email"
+  },
+  "football players": {
+    "name": "string",
+    "age": "date",
+    "nationality": "nationality",
+    "position": "position",
+    "value": "market_value",
+    "skill rating": "skill"
+  },
+  "footballplayers123": {
+    "fullname": "string",
+    "first_name": "string",
+    "contract_start": "date",
+    "contract_end": "date",
+    "nationality": "string",
+    "position": "string",
+    "goals": "integer",
+    "assists": "integer",
+    "market_value": "float",
+    "skill rating": "integer"
+  },
+  "footballplayers": {
+    "Fullname": "string",
+    "First_name": "string",
+    "age": "integer",
+    "On_market": {
+      "type": "boolean",
+      "true_probability": 0.6
+    },
+    "Contract_start": "date",
+    "Contract_end": "date",
+    "Nationality": "string",
+    "Club": "string",
+    "Position": "string",
+    "Goals": "integer",
+    "Assists": "integer",
+    "Market_value": "float",
+    "weekly_wage": "integer",
+    "Skill rating": "integer"
+  },
+  "PlayerProfile": {
+    "Fullname": "string",
+    "First_name": "string",
+    "age": "integer",
+    "On_market": {
+      "type": "boolean",
+      "true_probability": 0.35
+    },
+    "Contract_start": "date",
+    "Contract_end": "date",
+    "Nationality": "string",
+    "Club": "string",
+    "Position": "string",
+    "Goals": "integer",
+    "Assists": "integer",
+    "Market_value": "float",
+    "weekly_wage": "integer",
+    "Skill rating": "integer"
+  },
+  "kubernetes": {
+    "Fullname": "string",
+    "First_name": "string",
+    "age": "integer",
+    "On_market": {
+      "type": "boolean",
+      "true_probability": 0.35
+    },
+    "Contract_start": "date",
+    "Contract_end": "date",
+    "Nationality": "string",
+    "Club": "string",
+    "Position": "string",
+    "Goals": "integer",
+    "Assists": "integer",
+    "Market_value": "float",
+    "weekly_wage": "integer",
+    "Skill rating": "integer"
+  },
+  "kuber65464354netes": {
+    "Fullname": "string",
+    "First_name": "string",
+    "age": "integer",
+    "On_market": {
+      "type": "boolean",
+      "true_probability": 0.35
+    },
+    "Contract_start": "date",
+    "Contract_end": "date",
+    "Nationality": "string",
+    "Club": "string",
+    "Position": "string",
+    "Goals": "integer",
+    "Assists": "integer",
+    "Market_value": "float",
+    "weekly_wage": "integer",
+    "Skill rating": "integer"
+  }
+}
