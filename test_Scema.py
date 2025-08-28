@@ -1,4 +1,13 @@
-from Scema import sample, create_schema, generate_document, display_documents, load_data
+from Scema import (sample, create_schema, generate_document,
+                   display_documents, load_data, generate_market_value,
+                   generate_goals,
+                   generate_assists,
+                   generate_date,
+                   generate_integer,
+                   generate_float,
+                   generate_string,
+                   realistic_email,
+                   get_fullname)
 
 
 def test_sample_string():
@@ -69,3 +78,90 @@ def test_display_documents():
         assert 'age' in doc
         assert 'email' in doc
     assert len(documents) == expected_count
+
+
+def test_generate_market_value():
+    value = generate_market_value(10, 5, "BR")
+    assert isinstance(value, int)
+
+
+def test_generate_goals():
+    value = generate_goals(25)
+    assert isinstance(value, int)
+
+
+def test_generate_assists():
+    value = generate_assists(25)
+    assert isinstance(value, int)
+
+
+def test_generate_date_contract_start():
+    value = generate_date("contract_start")
+    assert isinstance(value, str)
+
+
+def test_generate_date_contract_end():
+    value = generate_date("contract_end")
+    assert isinstance(value, str)
+
+
+def test_generate_date_random():
+    value = generate_date("random_field")
+    assert isinstance(value, str)
+
+
+def test_generate_integer_wage():
+    value = generate_integer("wage")
+    assert isinstance(value, int)
+
+
+def test_generate_integer_age():
+    value = generate_integer("age")
+    assert isinstance(value, int)
+
+
+def test_generate_integer_default():
+    value = generate_integer("other")
+    assert isinstance(value, int)
+
+
+def test_generate_float_value():
+    value = generate_float("value")
+    assert isinstance(value, float)
+
+
+def test_generate_float_other():
+    value = generate_float("other")
+    assert isinstance(value, float)
+
+
+def test_generate_string_first():
+    value = generate_string("first_name")
+    assert isinstance(value, str)
+
+
+def test_generate_string_position():
+    value = generate_string("position")
+    assert isinstance(value, str)
+
+
+def test_generate_string_nationality():
+    value = generate_string("nationality")
+    assert isinstance(value, str)
+
+
+def test_generate_string_job():
+    value = generate_string("job")
+    assert isinstance(value, str)
+
+
+def test_realistic_email():
+    data = {"first_name": "John", "last_name": "Smith"}
+    value = realistic_email(data)
+    assert "@" in value
+
+
+def test_get_fullname():
+    data = {"first_name": "John", "last_name": "Smith"}
+    value = get_fullname(data)
+    assert "John" in value
