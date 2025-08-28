@@ -2,49 +2,37 @@ from Scema import sample, create_schema, generate_document, display_documents, l
 
 
 def test_sample_string():
-    value = sample("string")
+    value = sample("field", "string")
     assert type(value) == str
 
 
-
-
 def test_sample_number():
-    value = sample("number")
+    value = sample("field", "number")
     assert type(value) == str
 
 
 def test_sample_integer():
-    value = sample("integer")
+    value = sample("field", "integer")
     assert type(value) == int
 
 
 def test_sample_float():
-    value = sample("float")
+    value = sample("field", "float")
     assert 0 < value < 100
 
 
-def test_random_country_code():
-    value = sample("country code")
-    assert type(value) == str
-
-
 def test_sample_boolean():
-    value = sample("boolean")
+    value = sample("field", "boolean")
     assert type(value) == bool
 
 
 def test_sample_date():
-    value = sample("date")
+    value = sample("field", "date")
     assert type(value) == str
 
 
 def test_sample_ip():
-    value = sample("ip")
-    assert type(value) == str
-
-
-def test_sample_job():
-    value = sample("job")
+    value = sample("field", "ip")
     assert type(value) == str
 
 

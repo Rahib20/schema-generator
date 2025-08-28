@@ -11,7 +11,6 @@ Schema = Flask(__name__)
 
 data = "/schema-generator/data/data.json"
 
-
 suffix = [" FC", " United", " City"]
 clubs = [faker.city() + random.choice(suffix) for _ in range(1000)]
 
@@ -44,8 +43,6 @@ def create_schema():
 
     with open(data, "w") as f:
         json.dump(user_schemas, f, indent=2)
-
-
 
     return jsonify({"message": f"Schema '{schema_name}' saved successfully!"}), 200
 
@@ -110,7 +107,6 @@ def sampledata():
     json_data = display_documents(count, schema)
 
     if return_type == "application/x-ndjson":
-        #print(json.dumps(json_data, indent=2))
         ndjson = "\n".join([json.dumps(item) for item in json_data])
         return ndjson
 
@@ -128,7 +124,6 @@ def display_documents(count, schema):
 
 
 def generate_document(schema):
-    #print(schema)
     sample_data = {}
 
     for field, field_name in schema.items():
@@ -170,7 +165,7 @@ def generate_document(schema):
                                                        sample_data.get("nationality"))
 
     json_data = json.dumps(sample_data)
-   # print(json_data)
+
     return sample_data
 
 
@@ -201,7 +196,6 @@ def main():
             print("Please enter a valid number")
 
     for i in range(property_count):
-       # print()
         print("Field:" + str(i + 1))
         for k, v in variable_option.items():
             print(f"{k}: {v}")
