@@ -85,9 +85,39 @@ def test_generate_market_value():
     assert isinstance(value, int)
 
 
-def test_generate_goals():
-    value = generate_goals(25)
-    assert isinstance(value, int)
+def test_generate_goals_teen():
+    v = generate_goals(18)
+    assert 10 <= v <= 13
+
+
+def test_generate_goals_young():
+    v = generate_goals(22)
+    assert 14 <= v <= 18
+
+
+def test_generate_goals_mid20s():
+    v = generate_goals(25)
+    assert 18 <= v <= 24
+
+
+def test_generate_goals_peak():
+    v = generate_goals(28)
+    assert 24 <= v <= 40
+
+
+def test_generate_goals_early30s():
+    v = generate_goals(32)
+    assert 10 <= v <= 15
+
+
+def test_generate_goals_late30s():
+    v = generate_goals(37)
+    assert 5 <= v <= 10
+
+
+def test_generate_goals_other():
+    v = generate_goals(10)
+    assert 5 <= v <= 15
 
 
 def test_generate_assists():
