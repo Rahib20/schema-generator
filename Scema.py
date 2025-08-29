@@ -329,7 +329,7 @@ def generate_float(field):
 def generate_string(field):
     field = field.lower()
     if "first" in field:
-        return faker.first_name()
+        return "rahib"
     elif "last" in field:
         return faker.last_name()
 
